@@ -1,0 +1,15 @@
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Data.deps.json
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Data.dll
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Data.pdb
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.csprojAssemblyReference.cache
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.AssemblyInfoInputs.cache
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.AssemblyInfo.cs
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.csproj.CoreCompileInputs.cache
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.dll
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.pdb
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Domain.dll
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Domain.pdb
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.csproj.CopyComplete
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Data.runtimeconfig.json
+D:\PMG\PMG.Data\bin\Debug\netcoreapp2.2\PMG.Data.runtimeconfig.dev.json
+D:\PMG\PMG.Data\obj\Debug\netcoreapp2.2\PMG.Data.genruntimeconfig.cache

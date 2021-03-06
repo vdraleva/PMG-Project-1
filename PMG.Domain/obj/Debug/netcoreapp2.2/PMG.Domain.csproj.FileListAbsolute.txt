@@ -1,0 +1,9 @@
+D:\PMG\PMG.Domain\bin\Debug\netcoreapp2.2\PMG.Domain.deps.json
+D:\PMG\PMG.Domain\bin\Debug\netcoreapp2.2\PMG.Domain.dll
+D:\PMG\PMG.Domain\bin\Debug\netcoreapp2.2\PMG.Domain.pdb
+D:\PMG\PMG.Domain\obj\Debug\netcoreapp2.2\PMG.Domain.csprojAssemblyReference.cache
+D:\PMG\PMG.Domain\obj\Debug\netcoreapp2.2\PMG.Domain.AssemblyInfoInputs.cache
+D:\PMG\PMG.Domain\obj\Debug\netcoreapp2.2\PMG.Domain.AssemblyInfo.cs
+D:\PMG\PMG.Domain\obj\Debug\netcoreapp2.2\PMG.Domain.csproj.CoreCompileInputs.cache
+D:\PMG\PMG.Domain\obj\Debug\netcoreapp2.2\PMG.Domain.dll
+D:\PMG\PMG.Domain\obj\Debug\netcoreapp2.2\PMG.Domain.pdb

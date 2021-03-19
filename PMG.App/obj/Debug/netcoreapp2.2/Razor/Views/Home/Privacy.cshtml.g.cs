@@ -18,13 +18,18 @@ using PMG.App;
 
 #line default
 #line hidden
-#line 3 "D:\PMG\PMG.App\Views\_ViewImports.cshtml"
+#line 2 "D:\PMG\PMG.App\Views\_ViewImports.cshtml"
 using PMG.App.Models;
 
 #line default
 #line hidden
+#line 3 "D:\PMG\PMG.App\Views\_ViewImports.cshtml"
+using PMG.App.Models.Home;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d8ddb6bffa5a9b264bf8f89038bf03c234083fd3", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0d928e1550a07392f6308e6f0fb44e836ddf08e9", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bed2e5eae127de445c22a60383f69e1f2f8c779c", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

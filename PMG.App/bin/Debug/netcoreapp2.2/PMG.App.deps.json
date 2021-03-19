@@ -10,7 +10,7 @@
       "NETCOREAPP",
       "NETCOREAPP2_2"
     ],
-    "languageVersion": "7.3",
+    "languageVersion": "8.0",
     "platform": "",
     "allowUnsafe": false,
     "warningsAsErrors": false,
@@ -38,7 +38,9 @@
           "Microsoft.NETCore.App": "2.2.0",
           "Microsoft.VisualStudio.Web.BrowserLink": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.4",
-          "PMG.Data": "1.0.0"
+          "PMG.Data": "1.0.0",
+          "PMG.Domain": "1.0.0",
+          "PMG.Services": "1.0.0"
         },
         "runtime": {
           "PMG.App.dll": {}
@@ -394,6 +396,18 @@
         },
         "compile": {
           "PMG.Domain.dll": {}
+        }
+      },
+      "PMG.Services/1.0.0": {
+        "dependencies": {
+          "PMG.Data": "1.0.0",
+          "PMG.Domain": "1.0.0"
+        },
+        "runtime": {
+          "PMG.Services.dll": {}
+        },
+        "compile": {
+          "PMG.Services.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3737,6 +3751,11 @@
       "sha512": ""
     },
     "PMG.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMG.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

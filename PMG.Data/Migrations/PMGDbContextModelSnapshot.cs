@@ -133,12 +133,54 @@ namespace PMG.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PMG.Domain.Bookmark", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bookmarks");
+                });
+
+            modelBuilder.Entity("PMG.Domain.Fact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Author");
+
+                    b.Property<string>("Content");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PhilosophyFacts");
+                });
+
+            modelBuilder.Entity("PMG.Domain.Home.Messages", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Content")
+                        .IsRequired();
+
+                    b.Property<DateTime>("PublishedOn");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("PMG.Domain.PMGUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("BookmarkId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -170,6 +212,8 @@ namespace PMG.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("Role");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -181,6 +225,8 @@ namespace PMG.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BookmarkId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -190,6 +236,60 @@ namespace PMG.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("PMG.Domain.SchoolSubjects.English", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BookmarkId");
+
+                    b.Property<DateTime>("Day");
+
+                    b.Property<decimal>("Mark");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookmarkId");
+
+                    b.ToTable("English");
+                });
+
+            modelBuilder.Entity("PMG.Domain.SchoolSubjects.Mathematics", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BookmarkId");
+
+                    b.Property<DateTime>("Day");
+
+                    b.Property<decimal>("Mark");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookmarkId");
+
+                    b.ToTable("Mathematics");
+                });
+
+            modelBuilder.Entity("PMG.Domain.SchoolSubjects.Philosophy", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BookmarkId");
+
+                    b.Property<DateTime>("Day");
+
+                    b.Property<decimal>("Mark");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookmarkId");
+
+                    b.ToTable("Philosophy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -235,6 +335,34 @@ namespace PMG.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PMG.Domain.PMGUser", b =>
+                {
+                    b.HasOne("PMG.Domain.Bookmark", "Bookmark")
+                        .WithMany()
+                        .HasForeignKey("BookmarkId");
+                });
+
+            modelBuilder.Entity("PMG.Domain.SchoolSubjects.English", b =>
+                {
+                    b.HasOne("PMG.Domain.Bookmark", "bookmark")
+                        .WithMany("EnglishMarks")
+                        .HasForeignKey("BookmarkId");
+                });
+
+            modelBuilder.Entity("PMG.Domain.SchoolSubjects.Mathematics", b =>
+                {
+                    b.HasOne("PMG.Domain.Bookmark", "bookmark")
+                        .WithMany("MathematicsMarks")
+                        .HasForeignKey("BookmarkId");
+                });
+
+            modelBuilder.Entity("PMG.Domain.SchoolSubjects.Philosophy", b =>
+                {
+                    b.HasOne("PMG.Domain.Bookmark", "bookmark")
+                        .WithMany("PhilosophyMarks")
+                        .HasForeignKey("BookmarkId");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-PMG.App-C8A74050-2EF6-46B5-BE56-E0988B1FD6DD</UserSecretsId>
+	  <LangVersion>8.0</LangVersion>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
@@ -29,6 +30,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PMG.Data\PMG.Data.csproj" />
+    <ProjectReference Include="..\PMG.Domain\PMG.Domain.csproj" />
+    <ProjectReference Include="..\PMG.Services\PMG.Services.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>

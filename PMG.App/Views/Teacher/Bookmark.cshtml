@@ -1,0 +1,48 @@
+﻿@model Dictionary<string, string>
+@{
+    ViewData["Title"] = "Bookmark";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var philosophy = Model["Philosophy"];
+    var mathematics = Model["Mathematics"];
+    var english = Model["English"];
+    var student = ViewData["StudentUsername"];
+}
+
+<h1 class="d-flex justify-content-center mt-3">My Bookmark</h1>
+
+<h6>Student Name: @student</h6>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Mark</th>
+            <th scope="col">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Philosophy</td>
+            <td>@philosophy</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>English</td>
+            <td>@english</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Mathematics</td>
+            <td>@mathematics</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<hr />
+<div>
+    <a href="/Teacher/DeleteOrUdpate/@student" class="btn btn-light text-black-50">Delete/Update</a>
+</div>

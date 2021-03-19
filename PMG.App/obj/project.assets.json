@@ -4765,6 +4765,20 @@
         "runtime": {
           "bin/placeholder/PMG.Domain.dll": {}
         }
+      },
+      "PMG.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "PMG.Data": "1.0.0",
+          "PMG.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PMG.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PMG.Services.dll": {}
+        }
       }
     }
   },
@@ -13073,6 +13087,11 @@
       "type": "project",
       "path": "../PMG.Domain/PMG.Domain.csproj",
       "msbuildProject": "../PMG.Domain/PMG.Domain.csproj"
+    },
+    "PMG.Services/1.0.0": {
+      "type": "project",
+      "path": "../PMG.Services/PMG.Services.csproj",
+      "msbuildProject": "../PMG.Services/PMG.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -13091,7 +13110,9 @@
       "Microsoft.NETCore.App >= 2.2.0",
       "Microsoft.VisualStudio.Web.BrowserLink >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.2.4",
-      "PMG.Data >= 1.0.0"
+      "PMG.Data >= 1.0.0",
+      "PMG.Domain >= 1.0.0",
+      "PMG.Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -13127,6 +13148,12 @@
           "projectReferences": {
             "D:\\PMG\\PMG.Data\\PMG.Data.csproj": {
               "projectPath": "D:\\PMG\\PMG.Data\\PMG.Data.csproj"
+            },
+            "D:\\PMG\\PMG.Domain\\PMG.Domain.csproj": {
+              "projectPath": "D:\\PMG\\PMG.Domain\\PMG.Domain.csproj"
+            },
+            "D:\\PMG\\PMG.Services\\PMG.Services.csproj": {
+              "projectPath": "D:\\PMG\\PMG.Services\\PMG.Services.csproj"
             }
           }
         }

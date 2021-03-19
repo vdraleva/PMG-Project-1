@@ -8,7 +8,6 @@
 
     using Data;
     using Data.Seeders;
-    using System.Threading.Tasks;
 
     public static class ApplicationBuilderExtension
     {
@@ -16,22 +15,23 @@
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<PMGDbContext>();
+                using (var context = scope.ServiceProvider.GetRequiredService<PMGDbContext>())
+                {
 
                     context.Database.Migrate();
 
-                var seeders = Assembly.GetAssembly(typeof(PMGDbContext))
-                   .GetTypes()
-                   .Where(type => typeof(ISeeder).IsAssignableFrom(type))
-                   .Where(type => type.IsClass)
-                   .Select(type => (ISeeder)scope.ServiceProvider.GetRequiredService(type))
-                   .ToList();
+                    var seeders = Assembly.GetAssembly(typeof(PMGDbContext))
+                       .GetTypes()
+                       .Where(type => typeof(ISeeder).IsAssignableFrom(type))
+                       .Where(type => type.IsClass)
+                       .Select(type => (ISeeder)scope.ServiceProvider.GetRequiredService(type))
+                       .ToList();
 
-                foreach (var seeder in seeders)
-                {
-                    seeder.SeedAsync().GetAwaiter().GetResult();
+                    foreach (var seeder in seeders)
+                    {
+                        seeder.SeedAsync().GetAwaiter().GetResult();
+                    }
                 }
-
             }
         }
     }

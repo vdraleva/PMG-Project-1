@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "SfzAyq+qBlp9j6ZOPh/eNsRInWH1t9CBEROkR1PAMOJ0YEl6CictOG5u1jwas6zejKtxaE+J7Bcp59hct8+H7w==",
+  "success": true,
+  "projectFilePath": "D:\\PMG\\PMG.Gluposti\\PMG.Gluposti.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lubos\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\lubos\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\lubos\\.nuget\\packages\\system.runtime.interopservices.runtimeinformation\\4.3.0\\system.runtime.interopservices.runtimeinformation.4.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

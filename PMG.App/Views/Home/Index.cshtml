@@ -1,5 +1,47 @@
-﻿@{
+﻿@model Dictionary<string, IEnumerable<IBindingModel>>
+@{
     ViewData["Title"] = "Home Page";
+    List<IBindingModel> Messages = Model["Messages"].ToList();
 }
 
-<h1 class=" d-flex justify-content-center mt-3">Welcome to PMG School Website!</h1>
+@if (!this.User.Identity.IsAuthenticated)
+{
+    <div class="jumbotron bg-light w-75 mx-auto rounded">
+        <h1>Welcome to PMG School Website!</h1>
+        <hr class="bg-dark" />
+        <h3 class=""><a href="/Identity/Account/Login">Login</a> to use our website</h3>
+        <h3><a href="Identity/Account/Register">Register</a> if you do not have account</h3>
+    </div>
+}
+@if (this.User.Identity.IsAuthenticated)
+{
+    <div class="mt-5">
+        <h3>Announcements</h3>
+    </div>
+    <div class="d-flex bg-light mb-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Announcements</th>
+                    <th scope="col">Published On</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Messages.Count; i++)
+                {
+                <tr>
+                    <th scope="row"><p>@(i+1)</p></th>
+                    <td><p>@Messages[i].Content</p></td>
+                    <td><p>@Messages[i].PublishedOn</p></td>
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <td><a href="/Home/Delete/@Messages[i].Id" class="btn btn-danger text-black-50">Delete</a></td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿@model UpdateDeleteBindingModel 
+@{
+    ViewData["Title"] = "DeleteOrUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="d-flex justify-content-center">Delete Or Update</h1>
+<form method="post" class="mt-3">
+    <div class="form-group">
+        <label asp-for="Subject">Subject</label>
+        <select class="form-control" asp-for="Subject">
+            <option selected disabled>-- Choose Subject --</option>
+            <option value="Philosophy">Philosophy</option>
+            <option value="Matematics">Matematics</option>
+            <option value="English">English</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mark">Mark</label>
+        <input type="number" min="2" max="6" step="any" asp-for="Mark" class="form-control">
+    </div>
+    <div>
+        <a href="/Teacher/Delete" class="btn btn-danger text-black-50">Delete</a>
+    </div>
+</form>

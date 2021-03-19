@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +11,11 @@ using PMG.App.Extensions;
 using PMG.Data;
 using PMG.Data.Seeders;
 using PMG.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using PMG.Services.Bookmark;
+using PMG.Services.Fact;
+using PMG.Services.Marks;
+using PMG.Services.Message;
+using PMG.Services.User;
 
 namespace PMG.App
 {
@@ -44,11 +43,28 @@ namespace PMG.App
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<PMGUser>()
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<PMGDbContext>();
 
             services.AddScoped<RoleSeeder>();
-            services.AddScoped<SeedAdmin>();
+            services.AddScoped<PhilosophySeeder>();
+
+            services.AddTransient<IBookmarkService, BookmarkService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IMarkService, MarkService>();
+            services.AddTransient<IFactService, FactService>();
+            services.AddTransient<IMessageService, MessageService>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequiredLength = 3;
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

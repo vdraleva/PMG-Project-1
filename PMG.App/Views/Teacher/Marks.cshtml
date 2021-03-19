@@ -1,0 +1,45 @@
+﻿@model MarkBindingModel
+@{
+    ViewData["Title"] = "InputMarks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="d-flex justify-content-center mt-3 mx-auto">Marks Input</h1>
+<form method="post">
+    <label asp-for="StudentUsername"></label>
+    <select class="form-control" id="username" asp-for="StudentUsername">
+        <option selected disabled>-- Choose Student --</option>
+        @foreach (var username in (List<string>)ViewData["Students"])
+        {
+            <option value="@username">@username</option>
+        }
+    </select>
+    <div class="form-group">
+        <label asp-for="Subject"></label>
+        <select class="form-control" asp-for="Subject">
+            <option selected disabled>-- Choose Subject --</option>
+            <option value="Philosophy">Philosophy</option>
+            <option value="Matematics">Matematics</option>
+            <option value="English">English</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Mark">Mark</label>
+        <input type="number" min="2" max="6" step="any" asp-for="Mark" class="form-control">
+        <span asp-validation-for="Mark"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Enter</button>
+</form>
+<form asp-action="Bookmark" method="post">
+    <label asp-for="StudentUsername"></label>
+    <select class="form-control" id="username" asp-for="StudentUsername">
+        <option selected disabled>-- Choose Student --</option>
+        @foreach (var username in (List<string>)ViewData["Students"])
+        {
+            <option value="@username">@username</option>
+        }
+    </select>
+    <div class="mt-2">
+    <button type="submit" class="btn btn-primary">View Bookmark</button>
+    </div>
+</form>

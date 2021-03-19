@@ -1,0 +1,13 @@
+﻿@model Dictionary<string, IFacts>
+@{
+    ViewData["Title"] = "Facts";
+
+    var philosophy = Model["Philosophy"];
+}
+<h1 class="d-flex justify-content-center mt-3 mx-auto">Facts of the hour</h1>
+<div class="ridge mt-4 w-75 mx-auto">
+    <h2>Philosophy Sentences</h2>
+    <hr class="bg-dark"/>
+    <h6>Quote: @philosophy.Content</h6>
+    <h6>Author: @philosophy.Author</h6>
+</div>

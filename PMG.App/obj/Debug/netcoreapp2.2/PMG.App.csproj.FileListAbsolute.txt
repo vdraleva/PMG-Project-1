@@ -43,3 +43,12 @@ D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\_ViewI
 D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\Admin\Create.cshtml.g.cs
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\AboutUs\AboutUs.cshtml.g.cs
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\Facts\Facts.cshtml.g.cs
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\Teacher\Marks.cshtml.g.cs
+D:\PMG\PMG.App\bin\Debug\netcoreapp2.2\PMG.Services.dll
+D:\PMG\PMG.App\bin\Debug\netcoreapp2.2\PMG.Services.pdb
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\Student\Bookmark.cshtml.g.cs
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\Teacher\Bookmark.cshtml.g.cs
+D:\PMG\PMG.App\obj\Debug\netcoreapp2.2\Razor\Views\Teacher\DeleteOrUpdate.cshtml.g.cs

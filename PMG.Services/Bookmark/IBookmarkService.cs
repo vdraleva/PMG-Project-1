@@ -7,6 +7,6 @@
     {
         Task AddBookmark(Bookmark bookmark);
         Task<Bookmark> GetBookmarkByUsername(string username);
-        Task Delete(string BookmarId, decimal mark, string subject);
+        Task DeleteMark(string BookmarId, decimal mark, string subject);
     }
 }

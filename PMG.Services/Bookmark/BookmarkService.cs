@@ -3,7 +3,6 @@
     using Domain;
     using Microsoft.EntityFrameworkCore;
     using PMG.Data;
-    using PMG.Domain.SchoolSubjects;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -20,7 +19,7 @@
             await context.SaveChangesAsync();
         }
 
-        public async Task Delete(string BookmarId, decimal mark, string subject)
+        public async Task DeleteMark(string BookmarId, decimal mark, string subject)
         {
             var bookmark = await context.Users
                .Where(x => x.Id == BookmarId)
@@ -32,18 +31,18 @@
 
             if (subject == "Philosophy")
             {
-                var _mark  = bookmark.PhilosophyMarks.Where(x => x.Mark == mark).FirstOrDefault();
-                if (_mark !=null) { bookmark.PhilosophyMarks.Remove(_mark); }
+                var _mark = context.Philosophy.Where(x => x.Mark == mark).FirstOrDefault();
+                if (_mark != null) { context.Philosophy.Remove(_mark); }
             }
             else if (subject == "Mathematics")
             {
-                var _mark = bookmark.MathematicsMarks.Where(x => x.Mark == mark).FirstOrDefault();
-                if (_mark != null) { bookmark.MathematicsMarks.Remove(_mark); }
+                var _mark = context.Mathematics.Where(x => x.Mark == mark).FirstOrDefault();
+                if (_mark != null) { context.Mathematics.Remove(_mark); }
             }
             else if (subject == "English")
             {
-                var _mark = bookmark.EnglishMarks.Where(x => x.Mark == mark).FirstOrDefault();
-                if (_mark != null) { bookmark.EnglishMarks.Remove(_mark); }
+                var _mark = context.English.Where(x => x.Mark == mark).FirstOrDefault();
+                if (_mark != null) { context.English.Remove(_mark); }
             }
 
             await context.SaveChangesAsync();
@@ -51,6 +50,11 @@
 
         public async Task<Bookmark> GetBookmarkByUsername(string username)
         {
+            if (username == null)
+            {
+                return null;
+            }
+
             var bookmark = await context.Users
                 .Where(x => x.UserName == username)
                 .Select(x => x.Bookmark)
@@ -61,6 +65,5 @@
 
             return bookmark;
         }
-
     }
 }

@@ -8,6 +8,6 @@
         Task CreateMarkMathematics(decimal mark, PMGUser user);
         Task CreateMarkPhilosophy(decimal mark, PMGUser user);
         Task CreateMarkEnglish(decimal mark, PMGUser user);
-
+        Task DeleteMark(string MarkId, string BookmarkId);
     }
 }

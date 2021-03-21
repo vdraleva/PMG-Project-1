@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using PMG.App.Models.Teacher;
+    using PMG.Domain.SchoolSubjects;
     using PMG.Services.Bookmark;
     using PMG.Services.Marks;
     using PMG.Services.User;
@@ -14,7 +15,7 @@
         private readonly IMarkService markService;
         private readonly IUserService userService;
         private readonly IBookmarkService bookmarkService;
-        private string studentUsername;
+        private static string studentUsername;
 
         public TeacherController(IMarkService markService,
             IUserService userService,
@@ -25,6 +26,7 @@
             this.bookmarkService = bookmarkService;
         }
         [HttpGet("Teacher/Marks")]
+        [Authorize(Roles = "Teacher")]
         public IActionResult Marks()
         {
             ViewData["Students"] = userService.GetAllUsers()
@@ -36,12 +38,16 @@
             return this.View();
         }
         [HttpPost("Teacher/Marks")]
+        [Authorize(Roles = "Teacher")]
         public IActionResult Marks(MarkBindingModel model)
         {
             var user = userService
                 .GetUserWithBookmarkByUsrename(model.StudentUsername)
                 .GetAwaiter()
                 .GetResult();
+
+            studentUsername = model.StudentUsername;
+            ViewData["StudentUsername"] = model.StudentUsername;
 
             if (model.Subject == "Philosophy")
             {
@@ -70,51 +76,50 @@
             return this.Redirect("/Home/Index");
 
         }
+        [HttpGet("Teacher/DeleteOrUpdate")]
+        [Authorize(Roles = "Teacher")]
+        public IActionResult DeleteOrUpdate()
+        {
+            return this.View();
+        }
 
         [HttpPost("Teacher/Bookmark")]
         public IActionResult Bookmark(MarkBindingModel model)
         {
-            var marks = new Dictionary<string, string>();
+            var marks = new Dictionary<string, IEnumerable<ISubject>>();
             var bookmark = bookmarkService.GetBookmarkByUsername(model.StudentUsername).GetAwaiter().GetResult();
 
             studentUsername = model.StudentUsername;
+            ViewData["StudentUsername"] = studentUsername;
 
             if (bookmark == null)
             {
                 return this.View();
             }
-            var philosophy = bookmark.PhilosophyMarks.Select(x => x.Mark.ToString()).ToList();
-            var philosophyMarks = string.Join(", ", philosophy);
+            
+            var philosophy = bookmark.PhilosophyMarks.ToList();
 
-            var english = bookmark.EnglishMarks.Select(x => x.Mark.ToString()).ToList();
-            var englishMarks = string.Join(", ", english);
+            var english = bookmark.EnglishMarks.ToList();
 
-            var mathematics = bookmark.MathematicsMarks.Select(x => x.Mark.ToString()).ToList();
-            var mathematicsMarks = string.Join(", ", mathematics);
+            var mathematics = bookmark.MathematicsMarks.ToList();
 
-            marks["Philosophy"] = philosophyMarks;
-            marks["Mathematics"] = mathematicsMarks;
-            marks["English"] = englishMarks;
+            marks["Philosophy"] = philosophy;
+            marks["Mathematics"] = mathematics;
+            marks["English"] = english;
 
             return this.View(marks);
         }
-
-        [HttpGet("Teacher/Delete")]
+        [HttpGet("/Teacher/Delete/{MarkId}/{BookmarkId}")]
         [Authorize(Roles = "Teacher")]
-        public IActionResult Delete(UpdateDeleteBindingModel model)
+        public IActionResult Delete(string MarkId, string BookmarkId)
         {
-            var bookmark = bookmarkService.GetBookmarkByUsername(studentUsername).GetAwaiter().GetResult();
-            bookmarkService.Delete(bookmark.Id, model.Mark, model.Subject);
-
-            return Redirect("/Home/Index");
+            markService.DeleteMark(MarkId, BookmarkId);
+            return this.Redirect("/Home/Index");
         }
-
-        [HttpGet("Teacher/DeleteOrUdpate/{username}")]
         [Authorize(Roles = "Teacher")]
-        public IActionResult DeleteOrUpdate(string username)
+        public IActionResult Update(DeleteOrUpdateBindingModel model)
         {
-            ViewData["Student"] = username;
-            return this.View();
+            return this.Redirect("/Home/Index");
         }
     }
 }

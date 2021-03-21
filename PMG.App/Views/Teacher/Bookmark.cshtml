@@ -1,48 +1,69 @@
-﻿@model Dictionary<string, string>
+﻿@model Dictionary<string, IEnumerable<ISubject>>
 @{
     ViewData["Title"] = "Bookmark";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var philosophy = Model["Philosophy"];
-    var mathematics = Model["Mathematics"];
-    var english = Model["English"];
+    var philosophy = Model["Philosophy"].ToList();
+    var mathematics = Model["Mathematics"].ToList();
+    var english = Model["English"].ToList();
     var student = ViewData["StudentUsername"];
 }
 
-<h1 class="d-flex justify-content-center mt-3">My Bookmark</h1>
+<h1 class="d-flex justify-content-center mt-3">@student's Bookmark</h1>
 
-<h6>Student Name: @student</h6>
-<table class="table">
+<table class="table mt-5">
     <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Subject</th>
             <th scope="col">Mark</th>
-            <th scope="col">Date</th>
+            <th scope="col">Date & Time</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <th scope="row">1</th>
-            <td>Philosophy</td>
-            <td>@philosophy</td>
-            <td></td>
+            <td scope="row">Philosophy</td>
         </tr>
+        @for (int i = 0; i < philosophy.Count(); i++)
+        {
+            <tr>
+                <td scope="row">-</td>
+                <td scope="row">@(i + 1)</td>
+                <td scope="row">@philosophy[i].Mark</td>
+                <td scope="row">@philosophy[i].Day</td>
+                <td scope="row"><a href="/Teacher/Delete/@philosophy[i].Id/@philosophy[i].BookmarkId" class="btn btn-danger text-black-50">Delete</a></td>
+            </tr>
+}
         <tr>
             <th scope="row">2</th>
-            <td>English</td>
-            <td>@english</td>
-            <td></td>
+            <td scope="row">Mathematisc</td>
         </tr>
+        @for (int i = 0; i < mathematics.Count(); i++)
+        {
+            <tr>
+                <td scope="row">-</td>
+                <td>@(i + 1)</td>
+                <td>@mathematics[i].Mark</td>
+                <td>@mathematics[i].Day</td>
+                <td><a href="/Teacher/Delete/@mathematics[i].Id/@mathematics[i].BookmarkId" class="btn btn-danger text-black-50">Delete</a></td>
+            </tr>
+}
         <tr>
             <th scope="row">3</th>
-            <td>Mathematics</td>
-            <td>@mathematics</td>
-            <td></td>
+            <td scope="row">English</td>
         </tr>
+        @for (int i = 0; i < english.Count(); i++)
+        {
+    <tr>
+        <td>-</td>
+        <td>@(i + 1)</td>
+        <td>@english[i].Mark</td>
+        <td>@english[i].Day</td>
+        <td><a href="/Teacher/Delete/@english[i].Id/@english[i].BookmarkId" class="btn btn-danger text-black-50">Delete</a></td>
+    </tr>
+}
     </tbody>
 </table>
 <hr />
-<div>
-    <a href="/Teacher/DeleteOrUdpate/@student" class="btn btn-light text-black-50">Delete/Update</a>
-</div>

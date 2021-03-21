@@ -1,24 +1,24 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using PMG.App.Extensions;
-using PMG.Data;
-using PMG.Data.Seeders;
-using PMG.Domain;
-using PMG.Services.Bookmark;
-using PMG.Services.Fact;
-using PMG.Services.Marks;
-using PMG.Services.Message;
-using PMG.Services.User;
-
-namespace PMG.App
+﻿namespace PMG.App
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.UI;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using PMG.App.Extensions;
+    using PMG.Data;
+    using PMG.Data.Seeders;
+    using PMG.Domain;
+    using PMG.Services.Bookmark;
+    using PMG.Services.Fact;
+    using PMG.Services.Marks;
+    using PMG.Services.Message;
+    using PMG.Services.User;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)

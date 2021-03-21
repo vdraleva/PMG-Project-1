@@ -5,6 +5,7 @@
     using System.Linq;
 
     using Services.Bookmark;
+    using PMG.Domain.SchoolSubjects;
 
     public class StudentController : Controller
     {
@@ -18,22 +19,25 @@
         [HttpGet]
         public IActionResult Bookmark()
         {
-            var marks = new Dictionary<string, string>();
+            var marks = new Dictionary<string, IEnumerable<ISubject>>();
             var bookmark = bookmarkService.GetBookmarkByUsername(this.User.Identity.Name).GetAwaiter().GetResult();
+
             ViewData["StudentUsername"] = this.User.Identity.Name;
 
-            var philosophy = bookmark.PhilosophyMarks.Select(x => x.Mark.ToString()).ToList();
-            var philosophyMarks = string.Join(", ", philosophy);
+            if (bookmark == null)
+            {
+                return this.View();
+            }
 
-            var english = bookmark.EnglishMarks.Select(x => x.Mark.ToString()).ToList();
-            var englishMarks = string.Join(", ", english);
+            var philosophy = bookmark.PhilosophyMarks.ToList();
 
-            var mathematics = bookmark.MathematicsMarks.Select(x => x.Mark.ToString()).ToList();
-            var mathematicsMarks = string.Join(", ", mathematics);
+            var english = bookmark.EnglishMarks.ToList();
 
-            marks["Philosophy"] = philosophyMarks;
-            marks["Mathematics"] = mathematicsMarks;
-            marks["English"] = englishMarks;
+            var mathematics = bookmark.MathematicsMarks.ToList();
+
+            marks["Philosophy"] = philosophy;
+            marks["Mathematics"] = mathematics;
+            marks["English"] = english;
 
             return this.View(marks);
         }

@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Mvc;
     using PMG.App.Models.Facts;
-    using PMG.Data;
     using PMG.Services.Fact;
     using System;
     using System.Collections.Generic;
@@ -10,14 +9,12 @@
 
     public class FactsController : Controller
     {
-        private readonly PMGDbContext context;
-        private readonly IFactService factSerice;
+        private readonly IFactService factService;
         private Random random;
 
-        public FactsController(PMGDbContext context, IFactService factSerice)
+        public FactsController(IFactService factService)
         {
-            this.context = context;
-            this.factSerice = factSerice;
+            this.factService = factService;
             random = new Random();
         }
 
@@ -25,7 +22,7 @@
         {
             var facts = new Dictionary<string, IFacts>();
 
-            var philosophy = factSerice.GetPhilosophyFacts()
+            var philosophy = factService.GetPhilosophyFacts()
                 .GetAwaiter()
                 .GetResult()
                 .Select(f => new PhilosophyBindingModel
@@ -43,18 +40,18 @@
         }
         public IFacts GetPhilosophyFact()
         {
-            var philosophy = factSerice
+            var philosophy = factService
                 .GetPhilosophyFacts()
                 .GetAwaiter()
                 .GetResult()
-               .Select(f => new PhilosophyBindingModel
-               {
-                   Content = f.Content,
-                   Author = f.Author
-               })
+                .Select(f => new PhilosophyBindingModel
+                {
+                    Content = f.Content,
+                    Author = f.Author
+                })
                .ToList();
 
-            var philosophyIndex = random.Next(1, philosophy.Count);
+            var philosophyIndex = random.Next(1, philosophy.Count());
 
             return philosophy[philosophyIndex];
         }
